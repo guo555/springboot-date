@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guo.mapper.ListMapper">
+    
+    <select id="queryList" resultType="Meetinglist">
+        select * from meetinglist
+    </select>
+
+    <select id="queryListById" resultType="Meetinglist">
+        select * from meetinglist where id = #{id}
+    </select>
+
+    <select id="queryListByTime" resultType="Meetinglist">
+        select * from meetinglist where sdate = #{sdate}
+    </select>
+
+
+    <insert id="addList" parameterType="Meetinglist">
+        insert into meetinglist values (#{id},#{listcondition},#{teacher},#{theme},#{mname},#{stime},#{etime},#{sdate},#{edate})
+    </insert>
+
+    <update id="updateList" parameterType="Meetinglist">
+        update meetinglist set listcondition=#{listcondition},teacher=#{teacher},theme=#{theme},mname=#{mname},stime=#{stime},etime=#{etime},sdate=#{sdate},edate=#{edate} where id=#{id}
+    </update>
+
+    <delete id="deleteList" parameterType="String">
+        delete from meetinglist where id = #{id}
+    </delete>
+
+
+
+    
+</mapper>

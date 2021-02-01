@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../project-es/project-es.iml" filepath="$PROJECT_DIR$/../project-es/project-es.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-date.iml" filepath="$PROJECT_DIR$/springboot-date.iml" />
+    </modules>
+  </component>
+</project>

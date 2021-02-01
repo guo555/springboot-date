@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<!--导航栏-->
+<nav class="navbar navbar-default" th:fragment="adtopbar">
+    <div class="container">
+        <div class="navbar-header">
+            <!--用来屏幕自适应-->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">办公室会议系统 <small>v1.0</small></a>
+        </div>
+
+        <!-- 导航条中加入的其他组件 -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li th:class="${sign=='admain.html'?'active':'nav-link'}"><a th:href="@{/admain.html}">首页 </a></li>
+                <li th:class="${sign=='admin-room.html'?'active':'nav-link'}"><a th:href="@{/adroom}" >会议室预约</a></li>
+                <li th:class="${sign=='admin-list.html'?'active':'nav-link'}"><a th:href="@{/adminlist}" >预约列表</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a th:text="${session.loginadmin}"></a></li>
+                <li><a th:href="@{/adlogout}">注销</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</body>
+</html>

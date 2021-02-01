@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Title</title>
+    <script src="/js/jquery-3.4.1.min.js"></script>
+</head>
+<script type="text/javascript">
+    /*所有参数：
+    url：待载入页面的url地址
+    data：待发送的key/value参数
+    success：载入成功时回调函数---date：封装了服务器返回的数据    status：状态
+    */
+    function a1(){
+
+        $.post({
+            url:"/ajax/a1",
+             data:{'ajaxname':$("#txtName").val()},
+             success:function (data,status){
+                console.log(data);
+                console.log(status);
+             }
+        });
+
+
+
+    }
+
+</script>
+
+<body>
+用户名：
+<input type="text" id="txtName" onblur="a1()">
+
+</body>
+</html>

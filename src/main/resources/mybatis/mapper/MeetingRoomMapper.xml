@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guo.mapper.RoomMapper">
+    
+    <select id="queryRoom" resultType="Meetingroom">
+        select * from meetingroom
+    </select>
+
+    <select id="queryRoomById" resultType="Meetingroom">
+        select id,mname,roomorder,num,roomcondition,tip from meetingroom where id = #{id}
+    </select>
+
+    <select id="queryRoomByName" resultType="Meetingroom">
+        select id,mname,roomorder,num,roomcondition,tip from meetingroom where mname = #{mname}
+    </select>
+
+
+    <insert id="addRoom" parameterType="Meetingroom">
+        insert into meetingroom values (#{id},#{mname},#{roomorder},#{num},#{roomcondition},#{tip})
+    </insert>
+
+    <update id="updateRoom" parameterType="Meetingroom">
+        update meetingroom set mname =#{mname},roomorder=#{roomorder},num=#{num},roomcondition=#{roomcondition},tip=#{tip} where id=#{id}
+    </update>
+
+    <delete id="deleteRoom" parameterType="String">
+        delete from meetingroom where id = #{id}
+    </delete>
+
+    
+</mapper>

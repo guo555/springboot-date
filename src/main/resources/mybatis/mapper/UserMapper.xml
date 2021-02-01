@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guo.mapper.UserMapper">
+    
+    <select id="queryUserList" resultType="User">
+        select * from user
+    </select>
+
+    <select id="findByUsernameAndPassword" resultType="User">
+        select id,user_num,username,password from user where user_num = #{user_num} and password=#{password}
+    </select>
+
+    <select id="findbyname" resultType="User">
+        select id,user_num,username,password from user where username = #{username}
+    </select>
+
+    <insert id="addUser" parameterType="User">
+        insert into user (id,name,pwd) value (#{id},#{name},#{pwd})
+    </insert>
+
+    <update id="updateUser" parameterType="User">
+        update user set username =#{username},password=#{password} where username=#{username}
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        delete from user where id = #{id}
+    </delete>
+
+
+
+    
+</mapper>

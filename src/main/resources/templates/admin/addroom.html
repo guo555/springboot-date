@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <style>
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle!important;
+        }
+        #room-table a{
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+<div th:insert="~{commons/commons.html::topbar(sign='room.html')}"></div>
+
+<div id="room-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">添加会议室</h3>
+                    </div>
+                    <div class="panel panel-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-10 col-sm-offset-1">
+
+                                    <form th:action="@{/addfinish}" method="post">
+
+                                        <div class="form-group">
+                                            <label for="name">会讨论室名称</label>
+                                            <input type="text" class="form-control" id="name" name="mname" placeholder="请输入会议室名称" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="num">座位数（人）</label>
+                                            <input type="text" class="form-control" id="num" name="num" placeholder="会议室容纳人数">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="roomcondition">当前状态</label>
+                                            <select class="form-control" id="roomcondition" name="roomcondition">
+                                                <option>可用</option>
+                                                <option>不可用</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="tips">备注</label>
+                                            <input type="text" class="form-control" id="tips" name="tip" placeholder="备注（仪器设备等是否完好）">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">添加</button>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

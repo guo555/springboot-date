@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script>
+
+    </script>
+</head>
+<body>
+<div th:insert="~{commons/adcommons.html::adtopbar(sign='admin-list.html')}"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">会议预约列表</h3>
+                </div>
+                <div class="panel panel-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped " id="room-table">
+                                        <tr>
+                                            <th>编号</th>
+                                            <th>会议室</th>
+                                            <th>负责老师</th>
+                                            <th>预约主题</th>
+                                            <th>开始时间</th>
+                                            <th>结束时间</th>
+                                            <th>状态</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        <tr th:each="room:${adminlists}">
+                                            <td th:text="${room.getId()}"></td>
+                                            <td th:text="${room.getMname()}"></td>
+                                            <td th:text="${room.getTeacher()}"></td>
+                                            <td th:text="${room.getTheme()}"></td>
+                                            <td th:text="${room.getSdate()}+'  ' +${ room.getStime()}"></td>
+                                            <td th:text="${room.getEdate()}+'  ' +${ room.getEtime()}"></td>
+                                            <td>
+                                                <span th:class="${room.getListcondition()=='已批准'?'label label-sm label-success':(room.getListcondition()=='未审核'?'label label-sm label-info':'label label-sm label-danger')}" th:text="${room.getListcondition()}"></span>
+                                            </td>
+                                            <td>
+                                                <a type="button" th:href="@{/listpass/}+${room.getId()}" class="btn btn-sm btn-success">通过</a>
+                                                <a type="button" th:href="@{/listnopass/}+${room.getId()}" class="btn btn-sm btn-danger">不通过</a>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

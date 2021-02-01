@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Title</title>
+    <script src="/js/jquery-3.4.1.min.js"></script>
+</head>
+<script type="text/javascript">
+    $(function (){
+        $("#btn1").on("click",function (){
+            {
+                $.post("/alist11",function (data){
+                    console.log(data);
+                    var html1 = "";
+                    for (var i=0;i<data.length;i++){
+                        html1+="<tr>"+
+                            "<td>"+data[i].id+"</td>"+
+                            "<td>"+data[i].teacher+"</td>"+
+                            "<td>"+data[i].stime+"</td>"+
+                            "<td>"+data[i].sdate+"</td>"+
+                            "<td>"+data[i].edate+"</td>"+
+
+                            "</tr>"
+                    }
+                    $("#content").html(html1);
+                })
+            }
+        })
+    })
+
+
+
+</script>
+
+<body>
+<input type="button" id="btn1" value="获取数据"/>
+<table width="80%" align="center">
+    <tr>
+        <td>id</td>
+        <td>name</td>
+        <td>pwd</td>
+    </tr>
+    <tbody id="content">
+
+    </tbody>
+</table>
+
+</body>
+</html>

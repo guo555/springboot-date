@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>预约日历</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/datetimepicker/css/bootstrap-datetimepicker.min.css}">
+    <script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/datetimepicker/js/bootstrap-datetimepicker.min.js}"></script>
+    <script th:src="@{/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js}"></script>
+
+</head>
+
+
+<style>
+    .table th, .table td {
+        text-align: center;
+        vertical-align: middle!important;
+    }
+    #room-table a{
+        text-decoration: none;
+    }
+
+</style>
+
+
+<script type="text/javascript" th:inline="javascript">
+
+    var date = new Date();
+    $(function(){
+        $("#start_id").datetimepicker({
+            format: 'yyyy-mm-dd',//显示格式
+            //startDate:date,
+            startView:2,
+            minView:2,
+            maxView :2,
+            language: 'zh-CN',
+            autoclose: 1,//选择后自动关闭
+            clearBtn:true,//清除按钮
+            todayBtn:true,//当天日期按钮
+            todayHighlight:true,
+        });
+
+        $("#save").on("click",function (){
+            {
+                $.post("/rdate/r4",{"sdate":$("#start_id").val()},function (data){
+                    console.log(data);
+                    var html1 = "";
+                    for (var i=0;i<data.length;i++){
+                        html1+="<tr>"+
+                            "<td>"+data[i].mname+"</td>"
+
+                        if(data[i].a=="1"){
+                            html1+="<td style='background: #090;color: white'>"+"已预约"+"</td>"
+                        }else {
+                            html1+="<td>"+""+"</td>"
+                        }
+                        if(data[i].b=="1"){
+                            html1+="<td style='background: #090;color: white'>"+"已预约"+"</td>"
+                        }else {
+                            html1+="<td>"+""+"</td>"
+                        }
+                        if(data[i].c=="1"){
+                            html1+="<td style='background: #090;color: white'>"+"已预约"+"</td>"
+                        }else {
+                            html1+="<td>"+""+"</td>"
+                        }
+                        if(data[i].d=="1"){
+                            html1+="<td style='background: #090;color: white'>"+"已预约"+"</td>"
+                        }else {
+                            html1+="<td>"+""+"</td>"
+                        }
+                        if(data[i].e=="1"){
+                            html1+="<td style='background: #090;color: white'>"+"已预约"+"</td>"
+                        }else {
+                            html1+="<td>"+""+"</td>"
+                        }
+                        if(data[i].f=="1"){
+                            html1+="<td style='background: #090;color: white'>"+"已预约"+"</td>"
+                        }else {
+                            html1+="<td>"+""+"</td>"
+                        }
+                        if(data[i].g=="1"){
+                            html1+="<td style='background: #090;color: white'>"+"已预约"+"</td>"
+                        }else {
+                            html1+="<td>"+""+"</td>"
+                        }
+                        if(data[i].h=="1"){
+                            html1+="<td style='background: #090;color: white'>"+"已预约"+"</td>"
+                        }else {
+                            html1+="<td>"+""+"</td>"
+                        }
+                        if(data[i].i=="1"){
+                            html1+="<td style='background: #090;color: white'>"+"已预约"+"</td>"
+                        }else {
+                            html1+="<td>"+""+"</td>"
+                        }
+                        if(data[i].j=="1"){
+                            html1+="<td style='background: #090;color: white'>"+"已预约"+"</td>"
+                        }else {
+                            html1+="<td>"+""+"</td>"
+                        }
+                        if(data[i].k=="1"){
+                            html1+="<td style='background: #090;color: white'>"+"已预约"+"</td>"
+                        }else {
+                            html1+="<td>"+""+"</td>"
+                        }
+                        if(data[i].l=="1"){
+                            html1+="<td style='background: #090;color: white'>"+"已预约"+"</td>"
+                        }else {
+                            html1+="<td>"+""+"</td>"
+                        }
+                        if(data[i].m=="1"){
+                            html1+="<td style='background: #090;color: white'>"+"已预约"+"</td>"
+                        }else {
+                            html1+="<td>"+""+"</td>"
+                        }
+                        html1+="</tr>"
+
+                    }
+                    $("#content").html(html1);
+
+                })
+            }
+        });
+        /*$("#start_id").val(); //获取值*/
+       /* $("#start_id").val("2018-03-03"); //赋值
+        $("#start_id").val("");  //赋为空*/
+
+    });
+</script>
+
+
+<body>
+<div th:insert="~{commons/commons.html::topbar(sign='date.html')}"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title">预约日历</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="clearfix" style="margin-left: 30px">
+                        <div style="float: left;color: red" id="errors"></div>
+                        <div class='input-group' style="width: 90%">
+                            <input type='text' class="form-control" id='start_id' placeholder="请选择查询日期"/>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                            <div class="save-btn" style="float: right;margin-left: 3px">
+                                <a id="save"  class="btn btn-primary">查询</a>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="panel panel-body" style="font-size: 16px">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered " id="room-table">
+                                        <tr>
+                                            <th style="background: #42a5f5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th style="background: #42a5f5;color: white">8:00</th>
+                                            <th style="background: #42a5f5;color: white">9:00</th>
+                                            <th style="background: #42a5f5;color: white">10:00</th>
+                                            <th style="background: #42a5f5;color: white">11:00</th>
+                                            <th style="background: #42a5f5;color: white">12:00</th>
+                                            <th style="background: #42a5f5;color: white">13:00</th>
+                                            <th style="background: #42a5f5;color: white">14:00</th>
+                                            <th style="background: #42a5f5;color: white">15:00</th>
+                                            <th style="background: #42a5f5;color: white">16:00</th>
+                                            <th style="background: #42a5f5;color: white">17:00</th>
+                                            <th style="background: #42a5f5;color: white">18:00</th>
+                                            <th style="background: #42a5f5;color: white">19:00</th>
+                                            <th style="background: #42a5f5;color: white">20:00</th>
+                                            <tbody id="content">
+
+                                            </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</div>
+</body>
+</html>
